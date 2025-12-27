@@ -1,4 +1,5 @@
 # Árbol 3D Navideño
+![image alt]([image_url](https://github.com/CristhianE-GuinoQ/CristhianE-GuinoQ.github.io/blob/ad09e8b1a6b2cf675b4cc2a948dc5a0da5e92072/arbol3d.png))
 
 Este proyecto muestra un árbol de Navidad en 3D con hologramas y animaciones interactivas en el navegador.
 
