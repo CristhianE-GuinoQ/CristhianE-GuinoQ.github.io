@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Arbol3D-Navideño</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body> 
+
+<canvas id="hologram-canvas"></canvas>
+
+    <aside>
+        <div></div>
+    </aside>
+<ul>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+      </ul>
+
+<script src="script.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/examples/jsm/loaders/FontLoader.js": "https://unpkg.com/three@0.160.0/examples/jsm/loaders/FontLoader.js",
+    "three/examples/jsm/geometries/TextGeometry.js": "https://unpkg.com/three@0.160.0/examples/jsm/geometries/TextGeometry.js"
+  }
+}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+
+/* ================= ESCENA ================= */
+const canvas = document.getElementById('hologram-canvas');
+const scene = new THREE.Scene();
+
+/* CONFIGURACIÓN DE CÁMARA (NO TOCAR - Mantiene la base de perspectiva) */
+const camera = new THREE.PerspectiveCamera(
+  60,
+  window.innerWidth / window.innerHeight,
+  0.1,
+  1000
+);
+
+const renderer = new THREE.WebGLRenderer({
+  canvas,
+  alpha: true,
+  antialias: true
+});
+
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Optimización para móviles
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+/* 🔥 MAGIA RESPONSIVA 🔥
+   Esta función calcula si estás en móvil y aleja la cámara 
+   para que tu árbol y texto quepan perfectos.
+*/
+function resizeCamera() {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const aspect = width / height;
+
+    renderer.setSize(width, height);
+    camera.aspect = aspect;
+
+    // LÓGICA DE DISTANCIA:
+    // En PC (aspecto ancho) usamos Z = 40.
+    // En Móvil (aspecto alto) alejamos la cámara dividiendo por el aspecto.
+    if (aspect < 1) {
+        // Estás en celular vertical
+        camera.position.z = 45 / aspect; // Aleja la cámara automáticamente
+    } else {
+        // Estás en PC o celular horizontal
+        camera.position.z = 40;
+    }
+    
+    camera.updateProjectionMatrix();
+    
+}
+
+// Ejecutamos al inicio y al cambiar tamaño
+resizeCamera();
+window.addEventListener('resize', resizeCamera);
+
+
+/* ================= SHADER HOLOGRAMA  ================= */
+const HologramShader = {
+  uniforms: {
+    color: { value: new THREE.Color(0x00ffff) },
+    time: { value: 0 },
+    opacity: { value: 0.75 }
+  },
+  vertexShader: `
+    varying vec3 vPos;
+    void main() {
+      vPos = position;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform vec3 color;
+    uniform float time;
+    uniform float opacity;
+    varying vec3 vPos;
+
+    void main() {
+      float scan = step(0.5, fract(vPos.y * 4.0 - time * 2.0));
+      float flicker = 0.92 + sin(time * 40.0) * 0.05;
+
+      float rShift = sin(time * 0.6 + vPos.y * 0.15) * 0.04;
+      float gShift = sin(time * 0.8 + vPos.y * 0.12) * 0.05;
+      float bShift = sin(time * 0.5 + vPos.y * 0.18) * 0.03;
+
+      vec3 rgbMicro = vec3(
+        color.r + rShift,
+        color.g + gShift,
+        color.b + bShift
+      );
+
+      vec3 finalColor = rgbMicro * scan * flicker;
+      gl_FragColor = vec4(finalColor, opacity);
+    }
+  `
+};
+
+/* ================= TEXTO  ================= */
+const loader = new FontLoader();
+let material;
+
+loader.load(
+  'https://unpkg.com/three@0.160.0/examples/fonts/helvetiker_bold.typeface.json',
+  font => {
+    const geo = new TextGeometry('FELIZ NAVIDAD', {
+      font,
+      size: 3.8,
+      height: 0.7,
+      bevelEnabled: true,
+      bevelThickness: 0.06,
+      bevelSize: 0.06
+    });
+
+    geo.computeBoundingBox();
+    const xMid = -0.5 * (geo.boundingBox.max.x - geo.boundingBox.min.x);
+    geo.translate(xMid, 0, 0);
+
+    material = new THREE.ShaderMaterial({
+      uniforms: THREE.UniformsUtils.clone(HologramShader.uniforms),
+      vertexShader: HologramShader.vertexShader,
+      fragmentShader: HologramShader.fragmentShader,
+      transparent: true,
+      blending: THREE.AdditiveBlending
+    });
+
+    const mesh = new THREE.Mesh(geo, material);
+    mesh.position.y = 18;
+    scene.add(mesh);
+  }
+);
+
+const light = new THREE.PointLight(0x00ffff, 80);
+light.position.set(0, 20, 15);
+scene.add(light);
+
+const clock = new THREE.Clock();
+
+/* ========================================================= */
+/* ============ BASE HOLOGRÁFICA DEL ÁRBOL ================= */
+/* ========================================================= */
+
+// TUS VARIABLES INTACTAS
+const RADIO_INTERNO = -2; 
+const RADIO_EXTERNO = 5.2;   
+const BASE_Y = -18;        
+
+/* ---------- GEOMETRÍA ---------- */
+const baseGeo = new THREE.RingGeometry(
+  RADIO_INTERNO,
+  RADIO_EXTERNO,
+  64
+);
+
+baseGeo.center();
+
+/* ---------- MATERIAL ---------- */
+const baseMaterial = new THREE.ShaderMaterial({
+  uniforms: THREE.UniformsUtils.clone(HologramShader.uniforms),
+  vertexShader: HologramShader.vertexShader,
+  fragmentShader: HologramShader.fragmentShader,
+  transparent: true,
+  blending: THREE.AdditiveBlending
+});
+
+/* ---------- MESH ---------- */
+const baseCircle = new THREE.Mesh(baseGeo, baseMaterial);
+baseCircle.rotation.x = -Math.PI / 2;
+
+/* ---------- GROUP ---------- */
+const baseGroup = new THREE.Group();
+baseGroup.add(baseCircle);
+baseGroup.position.set(0, BASE_Y, -1);
+
+scene.add(baseGroup);
+
+// 🔒 CONTROL DEFINITIVO DE BASE SEGÚN DISPOSITIVO
+function controlarBasePorDispositivo() {
+    const esMovil = window.innerWidth <= 768;
+
+    if (esMovil) {
+        baseGroup.visible = false; // 📱 Móvil / Tablet → OCULTA
+    } else {
+        baseGroup.visible = true;  // 🖥️ PC → VISIBLE
+    }
+}
+
+// Ejecutar al cargar
+controlarBasePorDispositivo();
+
+// Ejecutar al cambiar tamaño/orientación
+window.addEventListener('resize', controlarBasePorDispositivo);
+
+
+/* ========================================================= */
+/* ===================== PAPÁ NOEL PNG ===================== */
+/* ========================================================= */
+
+const santaTexture = new THREE.TextureLoader().load('./images/santa.png');
+santaTexture.colorSpace = THREE.SRGBColorSpace;
+
+const santaMaterial = new THREE.MeshBasicMaterial({
+  map: santaTexture,
+  transparent: true,
+  side: THREE.DoubleSide
+});
+
+santaMaterial.toneMapped = false;
+
+const santaGeometry = new THREE.PlaneGeometry(8, 4.5);
+const santa = new THREE.Mesh(santaGeometry, santaMaterial);
+scene.add(santa);
+
+/* ================= MOVIMIENTO DEFINITIVO (TU CÓDIGO INTACTO) ================= */
+
+const AJUSTE_ROTACION = -Math.PI / 2; 
+
+let t = 0; 
+const radio = 12;
+const speed = 0.5; 
+let animacionActiva = true;
+let santaActiva = true;
+
+function updateSanta(delta) {
+    if (!santaActiva) return;
+
+    t += delta * speed;
+
+    let x, y, z;
+    let lookTarget = { x: 0, y: 0, z: 0 };
+
+    // --- FASE 1: ENTRADA ---
+    if (t < 1) {
+        x = 50 - (t * 50); 
+        y = 4;
+        z = radio;
+        lookTarget.x = x - 5;
+        lookTarget.y = y;
+        lookTarget.z = z;
+    } 
+    // --- FASE 2: GIRO ESPIRAL ---
+    else if (t < 5.2) {
+        const progresoGiro = t - 1;
+        const angulo = (Math.PI / 2) + (progresoGiro * 2.8);
+        
+        x = Math.cos(angulo) * radio;
+        z = Math.sin(angulo) * radio;
+        y = Math.min(4 + (progresoGiro * 4), 14);
+
+        const futuroAngulo = angulo + 0.1;
+        lookTarget.x = Math.cos(futuroAngulo) * radio;
+        lookTarget.z = Math.sin(futuroAngulo) * radio;
+        lookTarget.y = y + 0.1;
+
+    // --- ENDEREZAR ROTACIÓN ---
+    if (progresoGiro > 3.6) {
+        const s = (progresoGiro - 3.6) / 0.8; // 0 → 1
+        santa.rotation.y = THREE.MathUtils.lerp(
+            santa.rotation.y,
+            AJUSTE_ROTACION,
+            s
+        );
+    }
+
+    } 
+    // --- FASE 3: SALIDA NATURAL (SIN TELETRANSPORTE) ---
+    else {
+        const pSalida = t - 5;
+        
+        // --- LA CORRECCIÓN CLAVE ---
+        const anguloFinal = (Math.PI / 2) + (4 * 2.8);
+        const xFinalGiro = Math.cos(anguloFinal) * radio;
+        const zFinalGiro = Math.sin(anguloFinal) * radio;
+
+        x = xFinalGiro - (pSalida * 20); 
+        z = zFinalGiro - (pSalida * 5); 
+        y = 17 + (pSalida * 3);
+
+        lookTarget.x = x - 10;
+        lookTarget.y = y;
+        lookTarget.z = z;
+
+        if (x < -80) { 
+            santa.visible = false;
+            animacionActiva = false;
+            santaActiva = false; 
+        }
+    }
+
+    santa.position.set(x, y, z);
+    santa.lookAt(lookTarget.x, lookTarget.y, lookTarget.z);
+    
+    santa.rotateY(AJUSTE_ROTACION);
+}
+
+
+/* ================= ANIMATE ================= */
+function animate() {
+  requestAnimationFrame(animate);
+
+  const delta = clock.getDelta();
+  updateSanta(delta);
+
+  if (material) material.uniforms.time.value = clock.getElapsedTime();
+  
+  if (baseMaterial) baseMaterial.uniforms.time.value = clock.getElapsedTime();
+
+  renderer.render(scene, camera);
+
+}
+
+// EL LISTENER DE RESIZE YA ESTÁ ARRIBA EN "resizeCamera", 
+
+animate();
+
+// JS de los adornos del árbol
+const baubles = document.querySelectorAll("li");
+const lights = document.querySelectorAll("li:nth-child(odd)");
+const maxX = 30;
+const maxY = 35;
+const baublesLength = baubles.length;
+
+baubles.forEach((bauble, i) => {
+  // Tree
+  const y = Math.pow(i / baublesLength, 0.5) * maxY * 2 - maxY;
+  const x =
+    Math.pow((maxX * i) / baublesLength, 0.5) *
+    5.5 *
+    Math.random() *
+    (i % 2 === 0 ? 1 : -1);
+  const r = Math.random();
+  const n = Math.random();
+
+  bauble.style.setProperty("--x", `${x}vmin`);
+  bauble.style.setProperty("--y", `${y}vmin`);
+  bauble.style.setProperty("--r", `${r}turn`);
+  bauble.style.setProperty("--sign", n > 0.5 ? -1 : 1);
+  bauble.style.setProperty("--s", Math.random() * 0.875 + 0.125);
+  bauble.style.setProperty("--hue", Math.random() * 360);
+
+  bauble.textContent =
+    Math.random() >= 0.3 ? "GUI" : Math.random() >= 0.5 ? "1🎅" : "1🎁";
+
+  if (i % 2 === 0) {
+    bauble.animate(
+      { opacity: [1, 1, 0] },
+      {
+        duration: 2000 + Math.random() * 3000,
+        iterations: Infinity,
+        direction: "alternate",
+        delay: Math.random() * -16000,
+        easing: "ease-in"
+      }
+    );
+  }
+  const animation = bauble.animate(
+    { transform: ["rotateX(1turn) rotateY(2turn)"] },
+    {
+      duration: 7000 + Math.random() * 13000,
+      iterations: Infinity,
+      direction: "alternate",
+      delay: Math.random() * -16000,
+      easing: "ease-in",
+      composite: "add"
+    }
+  );
+  if (
+    i % 2 === 1 ||
+    !window.matchMedia?.("(prefers-reduced-motion: no-preference)")
+  ) {
+    animation.pause();
+  }
+});
+</script>
+<div id="hacker-signature">
+    <div id="sig-terminal-body">
+        <div id="sig-loader"></div> <div id="sig-content"></div> <span class="sig-cursor">_</span>
+    </div>
+</div>
+
+<style>
+    #hacker-signature {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        font-family: 'Courier New', Courier, monospace;
+        z-index: 10000;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 15px;
+        border-left: 4px solid #00ff00;
+        pointer-events: none;
+        min-width: 250px;
+        border-radius: 0 4px 4px 0;
+    }
+
+    /* Estilos de texto */
+    .line-status { color: #00ff00; font-size: 11px; font-weight: bold; margin-bottom: 4px; }
+    .line-label  { color: #888; font-size: 12px; margin-top: 6px; }
+    .line-name   { color: #00ff00; font-size: 24px; font-weight: 900; text-shadow: 0 0 10px #00ff00; }
+    .line-project { color: #00ffff; font-size: 10px; opacity: 0.7; margin-top: 4px; }
+    .loading-text { color: #555; font-size: 10px; font-style: italic; }
+
+    .sig-cursor { color: #00ff00; animation: blink 0.8s infinite; font-weight: bold; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* AJUSTE PARA MÓVIL (Responsivo) */
+    @media (max-width: 768px) {
+        #hacker-signature {
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            min-width: 180px;
+            transform: scale(0.85);
+            transform-origin: top left;
+        }
+        .line-name { font-size: 18px; }
+    }
+</style>
+<!-- ///------------------------------------////// -->
+<script>
+    const loaderDiv = document.getElementById('sig-loader');
+    const contentDiv = document.getElementById('sig-content');
+
+    const hackSteps = [
+        { load: "CALIBRATING_PROJECTOR", final: "● HOLOGRAM_PROJECTOR: ONLINE", class: "line-status" },
+        { load: "SEARCHING_CREATOR", final: "CREADOR_MASTER:", class: "line-label" },
+        { load: "DECRYPTING_NAME", final: "CRISTHIAN.G", class: "line-name" },
+        { load: "LOADING_PROJECT_DATA", final: "PROJECT: ARBOL_3D_NAVIDEÑO", class: "line-project" }
+    ];
+
+    let dotsInterval = null;
+
+    async function runTerminal() {
+        for (let step of hackSteps) {
+            // TEXTO DE CARGA SIN BARRA
+            loaderDiv.className = "loading-text";
+            loaderDiv.textContent = step.load;
+
+            for (let i = 0; i < 4; i++) {
+                await new Promise(r => setTimeout(r, 300));
+                loaderDiv.textContent += ".";
+            }
+
+            loaderDiv.textContent = "";
+
+            const div = document.createElement('div');
+            div.className = step.class;
+            div.textContent = step.final;
+            contentDiv.appendChild(div);
+
+            await new Promise(r => setTimeout(r, 500));
+        }
+
+        
+        iniciarCargaFinal();
+    }
+
+    function iniciarCargaFinal() {
+        const lastLine = contentDiv.lastElementChild;
+        const baseText = lastLine.textContent;
+        let dots = "";
+
+        dotsInterval = setInterval(() => {
+            dots = dots.length >= 6 ? "" : dots + ".";
+            lastLine.textContent = baseText + dots;
+        }, 400);
+    }
+
+    window.addEventListener('load', () => {
+        setTimeout(runTerminal, 1000);
+    });
+</script> 
+
+<!-- // ///////////////////////////////// // -->
+<script>
+(() => {
+    const REQUIRED_SIGNATURE = [
+        { class: "line-status",  text: "● HOLOGRAM_PROJECTOR: ONLINE" },
+        { class: "line-label",   text: "CREADOR_MASTER:" },
+        { class: "line-name",    text: "CRISTHIAN.G" },
+        { class: "line-project", text: "PROJECT: ARBOL_3D_NAVIDEÑO" }
+    ];
+
+    function killPage() {
+        document.body.innerHTML = `
+            <style>
+                body {
+                    margin:0; height:100vh; display:flex; align-items:center; justify-content:center;
+                    background:black; color:#0f0; font-family:monospace; text-align:center;
+                }
+                .msg {
+                    font-size:clamp(22px,5vw,46px); font-weight:900;
+                    text-shadow:0 0 5px #0f0,0 0 15px #0f0,0 0 30px #0f0;
+                    animation:flicker 1.6s infinite alternate;
+                }
+                @keyframes flicker { 0%{opacity:0.6}100%{opacity:1} }
+            </style>
+            <div class="msg">
+                NO TILÍN<br><br>
+                NO PODRÁS BORRARME TAN FÁCIL<br><br>
+                DESCÚBRELO…<br><br>
+                Y PODRÁ SER TODO TUYO
+            </div>
+        `;
+        throw new Error("SIGNATURE MODIFIED OR REMOVED");
+    }
+
+    function checkSignature() {
+        return REQUIRED_SIGNATURE.every(sig => {
+            const el = document.querySelector("." + sig.class);
+            if (!el) return false;
+            let text = el.textContent.trim();
+            if (sig.class === "line-project") text = text.replace(/\.+$/, "");
+            return text === sig.text;
+        });
+    }
+
+    function waitForTerminalAndMonitor() {
+        const contentDiv = document.getElementById('sig-content');
+        if (!contentDiv) return setTimeout(waitForTerminalAndMonitor, 100);
+
+        // ////////////////////////////////////////
+        const linesExist = REQUIRED_SIGNATURE.every(sig => document.querySelector("." + sig.class));
+        if (!linesExist) return setTimeout(waitForTerminalAndMonitor, 100);
+
+        // /////////////////////////////////////////
+        const observer = new MutationObserver(() => {
+            if (!checkSignature()) killPage();
+        });
+
+        observer.observe(contentDiv, { childList: true, subtree: true, characterData: true });
+    }
+
+    window.addEventListener("load", () => {
+        setTimeout(waitForTerminalAndMonitor, 500); // espera a que se ejecute tu runTerminal
+    });
+})();
+
+</script>
+
+</html>

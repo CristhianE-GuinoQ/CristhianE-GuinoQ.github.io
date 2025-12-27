@@ -1,0 +1,152 @@
+body {
+    height: 100vh;
+    height: 100svh; /* Solución para navegadores móviles modernos */
+    display: flex;  /* CAMBIO CLAVE: Usamos Flex para centrado perfecto */
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle, hsl(203 50% 2%), hsl(203 50% 10%));
+    font-family: system-ui, sans-serif;
+    font-size: 3.6vmin;
+    perspective: 150vmin;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    padding: 0;
+    /* margin: auto;  <-- ELIMINADO porque ya centramos con flex en el body */
+    display: grid;
+    list-style: none;
+    place-items: center; /* Asegura que los items nazcan del centro */
+
+    /* Ajustamos para que el giro sea unificado */
+    animation: display-case 10s infinite linear;
+    transform-style: preserve-3d;
+    
+    position: relative;
+    z-index: 100;
+}
+
+li {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    border: 0.85vmin double currentColor;
+    border-width: 0;
+    color: hsl(var(--hue, 343), 99%, 50%);
+    width: 4vmin;
+    height: 4vmin;
+    border-radius: 50%;
+    transform: translateY(var(--y)) rotateY(var(--r)) translateX(var(--x)) scale(var(--s));
+    transform-style: preserve-3d;
+    display: grid;
+    place-items: center;
+}
+
+li:nth-of-type(even) {
+    color: hsl(153 70% 50%);
+    color: hsl(calc(133 + mod(var(--hue), 40)) 50% 34%);
+}
+
+/* Animación del contenedor girando en un sentido */
+@keyframes display-case {
+    to {
+        transform: rotateY(360deg);
+    }
+}
+
+aside {
+    position: absolute;
+    z-index: -1;
+    margin: auto;
+    inset: 0;
+    content: "";
+    filter: blur(6vmin);
+    height: 70vmin;
+    width: 35vmin;
+    transform: translateY(5vmin) translateZ(-10vmin);
+    pointer-events: none; /* Para que no estorbe al click */
+}
+
+aside div {
+    position: absolute;
+    inset: 0vmin 7vmin;
+    background: hsl(133 80% 40%);
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    opacity: 0.5;
+    animation: pulse 6677ms infinite alternate ease-in-out;
+}
+
+@keyframes pulse {
+    to {
+        opacity: 0.2;
+    }
+}
+
+/* TRONCOOOOO */
+ul::before {
+    content: "";
+    position: absolute;
+    /* Ajustado ligeramente para conectar mejor visualmente */
+    top: calc(100% + 22vmin); 
+    left: 50%;
+    width: 7vmin;   /* ancho */
+    height: 14vmin; /* alto */
+    background: linear-gradient(
+        to bottom,
+        hsl(30 45% 35%),
+        hsl(25 55% 18%)
+    );
+    transform: translateX(-50%) translateZ(0.1vmin);
+    transform-origin: center center;
+    border-radius: 0 0 2.5vmin 2.5vmin;
+    box-shadow:
+        inset 0 0 1.5vmin rgba(0, 0, 0, 0.5),
+        0 1vmin 3vmin rgba(0, 0, 0, 0.6);
+}
+
+/* ESTRELLA */
+ul::after {
+    content: "★";
+    position: absolute;
+    top: -31vmin;          /* ajusta altura */
+    left: 50%;
+    font-size: 9vmin;      /* tamaño */
+    color: gold;
+    transform: translateX(-50%) translateZ(0);
+    transform-origin: center center;
+    text-shadow:
+        0 0 1vmin rgba(255, 215, 0, 0.9),
+        0 0 2vmin rgba(255, 215, 0, 0.8),
+        0 0 4vmin rgba(255, 200, 0, 0.7);
+    animation: star-glow 2.5s infinite alternate ease-in-out;
+    pointer-events: none;
+}
+
+@keyframes star-glow {
+    from {
+        transform: translateX(-50%) translateZ(0) scale(1);
+        opacity: 0.85;
+    }
+    to {
+        transform: translateX(-50%) translateZ(0) scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* HOLOGRAMA DEL TITULO - THREE JS CANVAS */
+#hologram-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1; /* Por encima del fondo, por debajo del arbol si se requiere */
+
+    
+}
